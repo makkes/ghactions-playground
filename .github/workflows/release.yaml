@@ -1,0 +1,19 @@
+on:
+  push:
+    tags:
+      - 'v*'
+name: Release
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: bump version
+        run: |
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git pull github ${GITHUB_REF} --ff-only
+          echo ${GITHUB_REF} > version
+          git add version
+          git commit -m "update version to ${GITHUB_REF}"
+          git push github HEAD:${GITHUB_REF}
