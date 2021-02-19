@@ -9,9 +9,9 @@ jobs:
     steps:
       - name: Get current time
         uses: gerred/current-time@v1.0.0
+        id: current-time
       - name: Checkout Code
         uses: actions/checkout@v1
-        id: current-time
       - name: Login to Github Package Registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
@@ -23,6 +23,8 @@ jobs:
           REPOSITORY: ${{ secrets.REPOSITORY }}
           BUILD_DATE: ${{ steps.current-time.outputs.time }}
         run: |
+          echo $REPOSITORY
+          echo $GITHUB_SHA
           docker build . -t docker.pkg.github.com/$REPOSITORY:$GITHUB_SHA
       - name: Tag with `master`
         env:
