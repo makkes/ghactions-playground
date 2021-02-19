@@ -18,4 +18,4 @@ jobs:
           echo ${GITHUB_REF} > version
           git add version
           git commit -m "update version to ${GITHUB_REF}"
-          git push github HEAD:${GITHUB_REF}
+          git push github HEAD:master
