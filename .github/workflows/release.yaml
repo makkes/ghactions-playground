@@ -11,6 +11,8 @@ jobs:
         uses: actions/checkout@v2
       - name: bump version
         run: |
+          git config --global user.email "mail@makk.es"
+          git config --global user.name "GitHub Actions Automation"
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git pull github ${GITHUB_REF} --ff-only
           echo ${GITHUB_REF} > version
