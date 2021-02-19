@@ -15,7 +15,8 @@ jobs:
           git config --global user.name "GitHub Actions Automation"
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git pull github ${GITHUB_REF} --ff-only
-          echo ${GITHUB_REF} > version
+          TAG=$(git describe --tags --exact-match)
+          echo ${TAG} > version
           git add version
-          git commit -m "update version to ${GITHUB_REF}"
+          git commit -m "update version to ${TAG}"
           git push github HEAD:master
