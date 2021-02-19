@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v2
       - name: bump version
         run: |
-          make bump-version GITHUB_USER=${GITHUB_ACTOR} GITHUB_TOKEN=${{ secrets.TOKEN }} CONFIGURE_GIT=true
+          make bump-version GITHUB_USER=${GITHUB_ACTOR} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} CONFIGURE_GIT=true
