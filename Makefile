@@ -11,12 +11,6 @@ HELM_RELEASE_PACKAGE_DIR ?= .helm-release-packages
 
 .PHONY: bump-version
 bump-version:
-ifndef GITHUB_USER
-	$(error "Please set GITHUB_USER")
-endif
-ifndef GITHUB_TOKEN
-	$(error "Please set GITHUB_TOKEN")
-endif
 ifeq (,$(GIT_TAG))
 	$(error "Please set GIT_TAG")
 endif
