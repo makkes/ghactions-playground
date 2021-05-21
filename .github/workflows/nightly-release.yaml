@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: '* * * * *'
+name: Nightly
+jobs:
+  nightly-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: release
+        run: |
+          git tag v0.0.0-nightly
+          git push -f origin v0.0.0-nightly
