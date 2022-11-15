@@ -1,0 +1,12 @@
+name: registry-triggered
+on:
+  registry_package:
+    types:
+      - published
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say something
+        run: |
+          echo hello
