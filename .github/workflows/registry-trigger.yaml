@@ -5,8 +5,9 @@ on:
       - published
 jobs:
   echo:
+    if: ${{ github.event.registry_package.name == 'ghactions-playground/ghactions' }}
     runs-on: ubuntu-latest
     steps:
       - name: say something
         run: |
-          echo ${{ toJSON(github.event) }}
+          echo running
